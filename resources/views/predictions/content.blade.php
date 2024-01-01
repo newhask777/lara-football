@@ -1,6 +1,7 @@
-<div class="col-span-8 ml-2 mr-2 mt-1 max-w-[724px]">
+<div class="col-span-8 ml-2 mr-2 mt-1 max-w-[100%]">
     <!-- Mian Banner -->
     {{--    {% include 'layouts/main_banner.html' %}--}}
+    @include('predictions.banner')
     <!-- end Main Banner -->
     <!-- Matches Carts -->
     <div class="match_cart bg-white mb-2 rounded-md">

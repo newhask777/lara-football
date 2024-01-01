@@ -1,9 +1,7 @@
 <div id="cart_league_header" class="cart_league flex pl-2 pr-2 p-1 mt-2 mb-2 rounded-md cursor-pointer bg-gray-100 hover:bg-gray-200">
     <div class="cart_expand flex justify-between w-full">
 
-
         <!-- League name -->
-
         <div class="flex">
             <div class="mt-auto mb-auto">
                 <img
@@ -28,13 +26,11 @@
             </div>
 
         </div>
-
-
         <!-- End League name -->
 
         <div class="arrows mt-auto mb-auto">
-            <img  src="{{ asset('assets/images/arr-down1.png') }}" alt="" class="open down w-4 h-4">
-            <img  src="{{ asset('assets/images/arr-up.png') }}" alt="" class="close up w-4 h-4">
+            <img  src="{{ asset('assets/images/arr-down1.png') }}" alt="" class="down hide w-4 h-4">
+            <img  src="{{ asset('assets/images/arr-up.png') }}" alt="" class="up show w-4 h-4">
         </div>
 
     </div>

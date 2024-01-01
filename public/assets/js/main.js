@@ -1,37 +1,47 @@
-$(function () {
-
-var acc = document.getElementsByClassName("cart_expand");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-    // this.parentElement.style.backgroundColor = '#f5f5f5';
-    
-
-        var up = this.getElementsByClassName('up');
-        var down = this.getElementsByClassName('down');
-
-        console.log(up[0]);
-
-        var panel = this.parentElement.nextElementSibling;
+$(document).ready(function(){
 
 
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-            up[0].style.display = "none";
-            down[0].style.display = "block";
-            this.parentElement.classList.add("hover");
-        
-        } else {
-            panel.style.display = "block";
-            up[0].style.display = "block";
-            down[0].style.display = "none";
-            this.parentElement.classList.remove("hover");
-        }
-    });
+    var acc = document.getElementsByClassName("cart_expand");
+    var i;
+
+    // console.log(acc);
+
+    for (i = 0; i < acc.length; i++) {
+
+        acc[i].addEventListener("click", function() {
+        // this.parentElement.style.backgroundColor = '#f5f5f5';
+
+
+            var up = this.getElementsByClassName('up');
+            var down = this.getElementsByClassName('down');
+
+            // console.log(down[0]);
+
+            var panel = this.parentElement.nextElementSibling;
+
+            console.log(panel);
+
+
+            if (panel.style.display != "none") {
+                panel.style.display = "none";
+                up.classList.remove("show");
+                up.classList.add("hide");
+                down.classList.remove("hide");
+                down.classList.add("show");
+                this.parentElement.classList.add("hover");
+
+            } else {
+                panel.style.display = "block";
+                up.classList.remove("hide");
+                up.classList.add("show");
+                down.classList.remove("show");
+                down.classList.add("hide");
+                this.parentElement.classList.remove("hover");
+            }
+        });
     }
 
-});
+
 
 $(function () {
     const stars = document.getElementsByClassName('star');
@@ -39,10 +49,11 @@ $(function () {
         for (i = 0; i < stars.length; i++) {
             stars[i].addEventListener("click", function() {
                 alert('hi')
-        } 
+        }
     )}
 });
 
+});
 
 //  $(function () {
 //     var matches_body = $('#cart_league_body');
@@ -50,7 +61,7 @@ $(function () {
 //     $('#content').on("click", function(event){
 
 //         header = event.target;
-        
+
 //         if(header.className == 'cart_expand flex justify-between w-full'){
 //             body = header.parentElement.nextElementSibling;
 
@@ -61,16 +72,16 @@ $(function () {
 //             $('#content').on("click", function(event){
 
 //                 if(body.style.display === "none"){
-                    
+
 //                     if(header.className == 'cart_expand flex justify-between w-full'){
-                        
+
 //                         body.style.display = "block";
-//                     }  
+//                     }
 //                 }
 
 //             })
 //         }
-//     })    
+//     })
 // });
 
 
@@ -84,14 +95,14 @@ $(function () {
 //     $('#cart_league_header').on("click", function(){
 //         matches_body.slideToggle();
 
-//         if( $('#matshes_arr_up').css('display') != 'none' )  { 
-//             /*success*/ 
+//         if( $('#matshes_arr_up').css('display') != 'none' )  {
+//             /*success*/
 //             $('#matshes_arr_up').hide()
 //             $('#matches_arr_down').show()
 //             $('#cart_league_header').css('background-color', '#e5e7eb')
-//         } 
-//         else { 
-//             /*does not have*/ 
+//         }
+//         else {
+//             /*does not have*/
 //             $('#matshes_arr_up').show()
 //             $('#matches_arr_down').hide()
 //             $('#cart_league_header').css('background-color', '')
@@ -109,14 +120,14 @@ $(function () {
 //     $('#cart_league_header2').on("click", function(){
 //         matches_body.slideToggle();
 
-//         if( $('#matshes_arr_up2').css('display') != 'none' )  { 
-//             /*success*/ 
+//         if( $('#matshes_arr_up2').css('display') != 'none' )  {
+//             /*success*/
 //             $('#matshes_arr_up2').hide()
 //             $('#matches_arr_down2').show()
 //             $('#cart_league_header2').css('background-color', '#e5e7eb')
-//         } 
-//         else { 
-//             /*does not have*/ 
+//         }
+//         else {
+//             /*does not have*/
 //             $('#matshes_arr_up2').show()
 //             $('#matches_arr_down2').hide()
 //             $('#cart_league_header2').css('background-color', '')
@@ -139,13 +150,13 @@ $(function () {
 //     $('#h2h_header').on("click", function(){
 //         table.slideToggle();
 
-//         if( $('#h2h_arr_up').css('display') != 'none' )  { 
-//             /*success*/ 
+//         if( $('#h2h_arr_up').css('display') != 'none' )  {
+//             /*success*/
 //             $('#h2h_arr_up').hide()
 //             $('#h2h_arr_down').show()
-//         } 
-//         else { 
-//             /*does not have*/ 
+//         }
+//         else {
+//             /*does not have*/
 //             $('#h2h_arr_up').show()
 //             $('#h2h_arr_down').hide()
 //         }
@@ -162,7 +173,7 @@ $(function () {
 //     //     }
 
 //     // });
-     
+
 // });
 
 // Standings
@@ -175,13 +186,13 @@ $(function () {
 //     $('#teams_standings_header').on("click", function(){
 //         st_body.slideToggle();
 
-//         if( $('#stat_arr_up').css('display') != 'none' )  { 
-//             /*success*/ 
+//         if( $('#stat_arr_up').css('display') != 'none' )  {
+//             /*success*/
 //             $('#stat_arr_up').hide()
 //             $('#stat_arr_down').show()
-//         } 
-//         else { 
-//             /*does not have*/ 
+//         }
+//         else {
+//             /*does not have*/
 //             $('#stat_arr_up').show()
 //             $('#stat_arr_down').hide()
 //         }
