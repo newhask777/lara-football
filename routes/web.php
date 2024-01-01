@@ -33,9 +33,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/backend/predictions/today', \App\Http\Controllers\Back\Predictions\PredictionsTodayController::class)->name('back.index');
+Route::get('/backend/predictions/date/{date}', \App\Http\Controllers\Back\Predictions\PredictionsByDateController::class)->name('back.date');
 
 
 
-Route::get('/predictions/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('front.index');
+Route::get('/predictions/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('predictions.today');
+Route::get('/predictions/date/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
 
 

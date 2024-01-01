@@ -20,8 +20,6 @@ class PredictionsTodayController extends Controller
 
 //        dd($games);
 
-
-
         foreach ($games as $game)
         {
             Prediction::create([

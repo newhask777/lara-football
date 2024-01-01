@@ -1,46 +1,42 @@
-$(document).ready(function(){
-
+$(function () {
 
     var acc = document.getElementsByClassName("cart_expand");
-    var i;
 
-    // console.log(acc);
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function(e) {
+            e.stopImmediatePropagation();
 
-    for (i = 0; i < acc.length; i++) {
-
-        acc[i].addEventListener("click", function() {
-        // this.parentElement.style.backgroundColor = '#f5f5f5';
-
-
-            var up = this.getElementsByClassName('up');
-            var down = this.getElementsByClassName('down');
-
-            // console.log(down[0]);
+            var up = this.getElementsByClassName('up')[0];
+            var down = this.getElementsByClassName('down')[0];
 
             var panel = this.parentElement.nextElementSibling;
 
-            console.log(panel);
+            if (panel.classList.contains('open')) {
+                console.log(up);
+                panel.classList.remove('open');
+                panel.classList.add('close');
 
+                down.classList.remove('open');
+                down.classList.add('close');
 
-            if (panel.style.display != "none") {
-                panel.style.display = "none";
-                up.classList.remove("show");
-                up.classList.add("hide");
-                down.classList.remove("hide");
-                down.classList.add("show");
-                this.parentElement.classList.add("hover");
+                up.classList.add('open');
 
-            } else {
-                panel.style.display = "block";
-                up.classList.remove("hide");
-                up.classList.add("show");
-                down.classList.remove("show");
-                down.classList.add("hide");
-                this.parentElement.classList.remove("hover");
             }
-        });
+            else{
+                console.log(down);
+                panel.classList.add('open');
+                panel.classList.remove('close');
+
+                down.classList.add('open');
+                down.classList.remove('close')
+
+                up.classList.remove('open');
+                up.classList.add('close');
+            }
+        })
     }
 
+});
 
 
 $(function () {
@@ -53,149 +49,5 @@ $(function () {
     )}
 });
 
-});
-
-//  $(function () {
-//     var matches_body = $('#cart_league_body');
-
-//     $('#content').on("click", function(event){
-
-//         header = event.target;
-
-//         if(header.className == 'cart_expand flex justify-between w-full'){
-//             body = header.parentElement.nextElementSibling;
-
-//             if(body.style.display === "block"){
-//                 body.style.display = "none";
-//             }
-
-//             $('#content').on("click", function(event){
-
-//                 if(body.style.display === "none"){
-
-//                     if(header.className == 'cart_expand flex justify-between w-full'){
-
-//                         body.style.display = "block";
-//                     }
-//                 }
-
-//             })
-//         }
-//     })
-// });
 
 
-
-// Matches
-// $(function () {
-//     var matches_body = $('#cart_league_body');
-
-//     $('#matches_arr_down').hide()
-
-//     $('#cart_league_header').on("click", function(){
-//         matches_body.slideToggle();
-
-//         if( $('#matshes_arr_up').css('display') != 'none' )  {
-//             /*success*/
-//             $('#matshes_arr_up').hide()
-//             $('#matches_arr_down').show()
-//             $('#cart_league_header').css('background-color', '#e5e7eb')
-//         }
-//         else {
-//             /*does not have*/
-//             $('#matshes_arr_up').show()
-//             $('#matches_arr_down').hide()
-//             $('#cart_league_header').css('background-color', '')
-//         }
-
-//     });
-// });
-
- // Matches2
-//  $(function () {
-//     var matches_body = $('#cart_league_body2');
-
-//     $('#matches_arr_down2').hide()
-
-//     $('#cart_league_header2').on("click", function(){
-//         matches_body.slideToggle();
-
-//         if( $('#matshes_arr_up2').css('display') != 'none' )  {
-//             /*success*/
-//             $('#matshes_arr_up2').hide()
-//             $('#matches_arr_down2').show()
-//             $('#cart_league_header2').css('background-color', '#e5e7eb')
-//         }
-//         else {
-//             /*does not have*/
-//             $('#matshes_arr_up2').show()
-//             $('#matches_arr_down2').hide()
-//             $('#cart_league_header2').css('background-color', '')
-//         }
-
-//     });
-// });
-
-
-// H2H
-// $(function () {
-//     var header = $('#h2h_header');
-//     var table = $('#h2h_table');
-//     var match_details = $('#h2h_match_details');
-
-//     table.hide()
-
-//     $('#h2h_arr_down').hide()
-
-//     $('#h2h_header').on("click", function(){
-//         table.slideToggle();
-
-//         if( $('#h2h_arr_up').css('display') != 'none' )  {
-//             /*success*/
-//             $('#h2h_arr_up').hide()
-//             $('#h2h_arr_down').show()
-//         }
-//         else {
-//             /*does not have*/
-//             $('#h2h_arr_up').show()
-//             $('#h2h_arr_down').hide()
-//         }
-//     });
-
-//     // header.on('click', function(){
-//     //     if(match_details.hasClass('open') == true){
-//     //         console.log('false')
-//     //         match_details.removeClass('open')
-//     //         table.hide()
-//     //     }else{
-//     //         match_details.addClass('open')
-//     //         table.show()
-//     //     }
-
-//     // });
-
-// });
-
-// Standings
-//  $(function () {
-//     var st_body = $('#teams_standings_body');
-//     st_body.hide()
-
-//     $('#stat_arr_down').hide()
-
-//     $('#teams_standings_header').on("click", function(){
-//         st_body.slideToggle();
-
-//         if( $('#stat_arr_up').css('display') != 'none' )  {
-//             /*success*/
-//             $('#stat_arr_up').hide()
-//             $('#stat_arr_down').show()
-//         }
-//         else {
-//             /*does not have*/
-//             $('#stat_arr_up').show()
-//             $('#stat_arr_down').hide()
-//         }
-//     });
-
-//  });

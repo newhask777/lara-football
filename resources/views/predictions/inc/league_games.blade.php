@@ -61,7 +61,7 @@
                 <a href="">
                     @if($game->status === "won")
 
-                        <img src="{{ asset('/assets/images/win.png') }}" alt="" class="w-4">
+                        <img src="{{ asset('/assets/images/win.com.png') }}" alt="" class="w-4">
 
                     @elseif ($game->status == 'lost')
 
