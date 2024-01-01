@@ -1,0 +1,15 @@
+.countries img{
+    display: none;
+}
+
+.countries li a:hover > img{
+    display: inline-block;
+}
+
+#matches_arr_down {
+    display: none;
+}
+
+.hover {
+    background-color: #f5f5f5;
+}
