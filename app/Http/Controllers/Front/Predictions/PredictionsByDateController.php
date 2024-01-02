@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Front\Predictions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class PredictionsByDateController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request, $date)
     {
+//        dd($date);
+
         $games = DB::table('predictions_by_dates')
             ->select('*')
             ->get();
@@ -30,13 +33,10 @@ class PredictionsByDateController extends Controller
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($federations);
-
         $temp = 'predictions';
         $type = 'today';
 
-        $currentDate = date('Y-m-d');
-
+        $currentDate = $date;
 
         return view('predictions.today', [
             'games' => $games,

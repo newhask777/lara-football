@@ -37,10 +37,8 @@ class PredictionsTodayController extends Controller
                 'result' => $game['result'],
                 'prediction' => $game['prediction'],
                 'is_expired' => $game['is_expired'],
-//                'odds' => $game['odds'],
+                'odds' => $game['odds'],
             ]);
         }
-
-        return '$games';
     }
 }

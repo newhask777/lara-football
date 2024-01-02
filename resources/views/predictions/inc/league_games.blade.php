@@ -55,9 +55,17 @@
                 <span>:</span>
                 <span class="text-xs font-bold mt-auto mb-auto ml-1">
 
+                    @foreach(json_decode($game->odds) as $odd => $value)
+
+                        @if ($odd == $game->prediction)
+                            {{ $value }}
+                        @endif
+
+                    @endforeach
+
                 </span>
             </div>
-            <span class="inline-block align-middle text-xs ml-1">
+            <span class="inline-block align-middle text-xs ml-2">
                 <a href="">
                     @if($game->status === "won")
 

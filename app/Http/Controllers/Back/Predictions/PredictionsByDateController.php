@@ -14,7 +14,7 @@ class PredictionsByDateController extends Controller
 
         PredictionByDate::truncate();
 
-        $response = Http::get("http://127.0.0.1:8001/api/predictions/date/${date}");
+        $response = Http::get("http://127.0.0.1:8000/api/predictions/date/${date}");
         $games = $response->json($key = null, $default = null);
 
         foreach ($games as $game)
@@ -34,7 +34,7 @@ class PredictionsByDateController extends Controller
                 'result' => $game['result'],
                 'prediction' => $game['prediction'],
                 'is_expired' => $game['is_expired'],
-//                'odds' => $game['odds'],
+                'odds' => $game['odds'],
             ]);
         }
     }
