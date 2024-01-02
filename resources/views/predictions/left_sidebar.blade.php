@@ -14,7 +14,7 @@
 
                     <li class="p-2 bg-white hover:bg-gray-200">
 
-                        <a href="/predictions/federation/{{ $federation->federation }}" class="flex">
+                        <a href="/predictions/today/{{ $federation->federation }}" class="flex">
 
                             <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
                                  src="{{ asset('/logos/'. $federation->federation .'.png') }}"
@@ -47,7 +47,7 @@
 
             <li class="p-2 bg-white hover:bg-gray-200">
 
-                <a href="/predictions/cluster/{{ $country->competition_cluster }}" class="flex">
+                <a href="/predictions/today/cluster/{{ $country->competition_cluster }}" class="flex">
 
                     <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
                          src="https://flagdownload.com/wp-content/uploads/Flag_of_{{$country->competition_cluster}}_Flat_Round-1024x1024.png"

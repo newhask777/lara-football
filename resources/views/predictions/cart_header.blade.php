@@ -60,7 +60,7 @@
     </div>
     <div class="text-xs font-bold ml-2 justify-end mt-auto mb-auto">
 
-        @if($type == 'today')
+        @if($type == 'today' or $type == 'federation-today')
             {{ $currentDate }}
         @endif
 

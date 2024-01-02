@@ -38,6 +38,10 @@ Route::get('/backend/predictions/date/{date}', \App\Http\Controllers\Back\Predic
 
 
 Route::get('/predictions/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('predictions.today');
+Route::get('/predictions/today/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByFederationToday::class)->name('predictions.today.federation');
+Route::get('/predictions/today/cluster/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByCountryToday::class)->name('predictions.today.country');
+
+
 Route::get('/predictions/date/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
 
 
