@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('predictions/today');
 });
 
 
@@ -32,16 +32,31 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/backend/predictions/today', \App\Http\Controllers\Back\Predictions\PredictionsTodayController::class)->name('back.index');
-Route::get('/backend/predictions/date/{date}', \App\Http\Controllers\Back\Predictions\PredictionsByDateController::class)->name('back.date');
+/*
+ *  Backend requests to api
+ */
+Route::group(['prefix' => 'backend/predictions'], function() {
+    Route::get('/today', \App\Http\Controllers\Back\Predictions\PredictionsTodayController::class)->name('back.index');
+    Route::get('/date/{date}', \App\Http\Controllers\Back\Predictions\PredictionsByDateController::class)->name('back.date');
+});
 
 
+/*
+ * Frontend requests today games
+ */
+Route::group(['prefix' => 'predictions'], function() {
+    Route::get('/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('predictions.today');
+    Route::get('/today/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByFederationToday::class)->name('predictions.today.federation');
+    Route::get('/today/cluster/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByCountryToday::class)->name('predictions.today.country');
+    Route::get('/today/league/{league}', \App\Http\Controllers\Front\Predictions\PredictionsByLeagueToday::class)->name('predictions.today.league');
+});
 
-Route::get('/predictions/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('predictions.today');
-Route::get('/predictions/today/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByFederationToday::class)->name('predictions.today.federation');
-Route::get('/predictions/today/cluster/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByCountryToday::class)->name('predictions.today.country');
 
-
-Route::get('/predictions/date/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
-
+/*
+ * Frontend requests games by dates
+ */
+Route::group(['prefix' => '/predictions/date'], function() {
+    Route::get('/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
+    Route::get('/{date}/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByDateFederationController::class)->name('predictions.date.federation');
+});
 

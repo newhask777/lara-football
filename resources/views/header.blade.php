@@ -1,7 +1,7 @@
 <header class="bg-white">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-2" aria-label="Global">
         <div class="flex lg:flex-1">
-            <a href="#" class="-m-1.5 p-1.5">
+            <a href="/predictions/today" class="-m-1.5 p-1.5">
                 <div class="flex">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-6 h-6 mb-auto mt-auto">
                     <div class="ml-2 flex flex-col text-sm font-bold">

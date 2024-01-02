@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Front\Predictions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Back\Prediction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PredictionsTodayController extends Controller
+class PredictionsByLeagueToday extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke($league)
     {
         $games = DB::table('predictions')
             ->select('*')
+            ->where('competition_name', $league)
             ->get();
 
         $tournaments = DB::table('predictions')
@@ -32,10 +31,10 @@ class PredictionsTodayController extends Controller
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($tournaments);
+//        dd($games);
 
-        $temp = '$leagues';
-        $type = 'today';
+        $temp = 'predictions';
+        $type = 'league-today';
 
         $currentDate = date('Y-m-d');
 
@@ -46,9 +45,9 @@ class PredictionsTodayController extends Controller
             'type' => $type,
             'tournaments' => $tournaments,
             'federations' => $federations,
+            'league' => $league,
             'countries' => $countries,
             'currentDate' => $currentDate,
-            'request' => $request
         ]);
     }
 }

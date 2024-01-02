@@ -14,10 +14,12 @@ class PredictionsByDateController extends Controller
 
         $games = DB::table('predictions_by_dates')
             ->select('*')
+            ->where('date', $date)
             ->get();
 
         $tournaments = DB::table('predictions_by_dates')
             ->select('competition_cluster','competition_name', 'federation')
+            ->where('date', $date)
             ->distinct('competition_cluster')
             ->distinct('competition_name')
             ->distinct('federation')
@@ -25,16 +27,18 @@ class PredictionsByDateController extends Controller
 
         $federations = DB::table('predictions_by_dates')
             ->select('federation')
+            ->where('date', $date)
             ->distinct('federation')
             ->get();
 
         $countries = DB::table('predictions_by_dates')
             ->select('competition_cluster')
+            ->where('date', $date)
             ->distinct('competition_cluster')
             ->get();
 
         $temp = 'predictions';
-        $type = 'today';
+        $type = 'date';
 
         $currentDate = $date;
 
@@ -45,7 +49,8 @@ class PredictionsByDateController extends Controller
             'tournaments' => $tournaments,
             'federations' => $federations,
             'countries' => $countries,
-            'currentDate' => $currentDate,
+            'date' => $currentDate,
+            'request' => $request
         ]);
     }
 }
