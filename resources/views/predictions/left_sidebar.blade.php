@@ -11,12 +11,12 @@
         </div>
 
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
-{{--            {{ dd(request()->routeIs('predictions.today')) }}--}}
+
             @foreach($federations as $federation)
 
                 @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
                     <li class="p-2 bg-white hover:bg-gray-200">
-                        <a href="/predictions/today/{{ $federation->federation }}" class="flex">
+                        <a href="{{ route('predictions.today.federation' , ['federation' =>  $federation->federation]) }}" class="flex">
                             <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
                                  src="{{ asset('/logos/'. $federation->federation .'.png') }}"
                                  alt="">
@@ -29,7 +29,7 @@
                 @elseif(Request::is('predictions/date/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
-                        <a href="/predictions/date/{{ $date }}/{{ $federation->federation }}" class="flex">
+                        <a href="{{ route('predictions.date.federation', ['date' => $date, 'federation' => $federation->federation]) }}" class="flex">
                             <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
                                  src="{{ asset('/logos/'. $federation->federation .'.png') }}"
                                  alt="">
@@ -58,16 +58,33 @@
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
             @foreach($countries as $country)
 
-            <li class="p-2 bg-white hover:bg-gray-200">
-                <a href="/predictions/today/cluster/{{ $country->competition_cluster }}" class="flex">
-                    <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
-                         src="https://flagdownload.com/wp-content/uploads/Flag_of_{{$country->competition_cluster}}_Flat_Round-1024x1024.png"
-                         alt="">
-                    <span class="ml-2">
-                        {{ $country->competition_cluster }}
-                    </span>
-                </a>
-            </li>
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
+
+                <li class="p-2 bg-white hover:bg-gray-200">
+                    <a href="{{ route('predictions.today.country', ['country' => $country->competition_cluster]) }}" class="flex">
+                        <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                             src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $country->competition_cluster }}_Flat_Round-1024x1024.png"
+                             alt="">
+                        <span class="ml-2">
+                            {{ $country->competition_cluster }}
+                        </span>
+                    </a>
+                </li>
+
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.date.country', ['date' => $date, 'country' => $country->competition_cluster]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $country->competition_cluster }}_Flat_Round-1024x1024.png"
+                                 alt="">
+                            <span class="ml-2">
+                                {{ $country->competition_cluster }}
+                            </span>
+                        </a>
+                    </li>
+
+                @endif
 
             @endforeach
 

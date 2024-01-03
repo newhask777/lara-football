@@ -46,7 +46,7 @@ class PredictionsByDateFederationController extends Controller
 
         $currentDate = $date;
 
-        return view('predictions.today', [
+        return view('predictions.main', [
             'games' => $games,
             'temp' => $temp,
             'type' => $type,

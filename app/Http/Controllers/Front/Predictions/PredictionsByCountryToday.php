@@ -39,7 +39,7 @@ class PredictionsByCountryToday extends Controller
         $currentDate = date('Y-m-d');
 
 
-        return view('predictions.today', [
+        return view('predictions.main', [
             'games' => $games,
             'temp' => $temp,
             'type' => $type,

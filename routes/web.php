@@ -57,6 +57,9 @@ Route::group(['prefix' => 'predictions'], function() {
  */
 Route::group(['prefix' => '/predictions/date'], function() {
     Route::get('/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
-    Route::get('/{date}/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByDateFederationController::class)->name('predictions.date.federation');
+    Route::get('/federation/{date}/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByDateFederationController::class)->name('predictions.date.federation');
+    Route::get('/country/{date}/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByDateCountryController::class)->name('predictions.date.country');
+
 });
+
 
