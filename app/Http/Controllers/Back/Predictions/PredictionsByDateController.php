@@ -12,7 +12,7 @@ class PredictionsByDateController extends Controller
     public function __invoke($date)
     {
 
-//        PredictionByDate::truncate();
+        PredictionByDate::truncate();
 
         $response = Http::get("http://127.0.0.1:8000/api/predictions/date/${date}");
         $games = $response->json($key = null, $default = null);

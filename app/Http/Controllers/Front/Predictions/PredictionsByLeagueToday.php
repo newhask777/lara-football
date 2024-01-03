@@ -47,7 +47,7 @@ class PredictionsByLeagueToday extends Controller
             'federations' => $federations,
             'league' => $league,
             'countries' => $countries,
-            'currentDate' => $currentDate,
+            'date' => $currentDate,
         ]);
     }
 }

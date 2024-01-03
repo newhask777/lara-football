@@ -53,7 +53,7 @@ class PredictionsByDateFederationController extends Controller
             'tournaments' => $tournaments,
             'federations' => $federations,
             'countries' => $countries,
-            'currentDate' => $currentDate,
+            'date' => $currentDate,
             'request' => $request
         ]);
     }

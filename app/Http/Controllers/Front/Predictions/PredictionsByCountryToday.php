@@ -47,7 +47,7 @@ class PredictionsByCountryToday extends Controller
             'federations' => $federations,
             'country' => $country,
             'countries' => $countries,
-            'currentDate' => $currentDate,
+            'date' => $currentDate,
         ]);
     }
 }

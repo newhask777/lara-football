@@ -11,9 +11,10 @@
         </div>
 
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
+{{--            {{ dd(request()->routeIs('predictions.today')) }}--}}
             @foreach($federations as $federation)
 
-                @if($request->path() == 'predictions/today')
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="/predictions/today/{{ $federation->federation }}" class="flex">
                             <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
@@ -25,7 +26,7 @@
                         </a>
                     </li>
 
-                @elseif($request->path() == "predictions/date/2023-12-29")
+                @elseif(Request::is('predictions/date/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="/predictions/date/{{ $date }}/{{ $federation->federation }}" class="flex">

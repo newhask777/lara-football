@@ -3,42 +3,48 @@
 namespace App\Http\Controllers\Front\Predictions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Back\Prediction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
-class PredictionsTodayController extends Controller
+class PredictionsByDateCountryController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $date, $federation)
     {
-        $games = DB::table('predictions')
+//        dd($date);
+
+        $games = DB::table('predictions_by_dates')
             ->select('*')
+            ->where('date', $date)
+            ->where('federation', $federation)
             ->get();
 
-        $tournaments = DB::table('predictions')
+        $tournaments = DB::table('predictions_by_dates')
             ->select('competition_cluster','competition_name', 'federation')
+            ->where('date', $date)
+            ->where('federation', $federation)
             ->distinct('competition_cluster')
             ->distinct('competition_name')
             ->distinct('federation')
             ->get();
 
-        $federations = DB::table('predictions')
+        $federations = DB::table('predictions_by_dates')
             ->select('federation')
+            ->where('date', $date)
+            ->where('federation', $federation)
             ->distinct('federation')
             ->get();
 
-        $countries = DB::table('predictions')
+        $countries = DB::table('predictions_by_dates')
             ->select('competition_cluster')
+            ->where('date', $date)
+            ->where('federation', $federation)
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($tournaments);
+        $temp = 'predictions';
+        $type = 'date';
 
-        $temp = '$leagues';
-        $type = 'today';
-
-        $currentDate = date('Y-m-d');
-
+        $currentDate = $date;
 
         return view('predictions.today', [
             'games' => $games,
