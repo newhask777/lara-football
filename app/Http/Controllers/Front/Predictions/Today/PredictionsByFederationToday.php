@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Front\Predictions;
+namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class PredictionsByCountryToday extends Controller
+class PredictionsByFederationToday extends Controller
 {
-    public function __invoke($country)
+    public function __invoke($federation)
     {
         $games = DB::table('predictions')
             ->select('*')
-            ->where('competition_cluster', $country)
+            ->where('federation', $federation)
             ->get();
 
         $tournaments = DB::table('predictions')
             ->select('competition_cluster','competition_name', 'federation')
+            ->where('federation', $federation)
             ->distinct('competition_cluster')
             ->distinct('competition_name')
             ->distinct('federation')
@@ -23,18 +24,27 @@ class PredictionsByCountryToday extends Controller
 
         $federations = DB::table('predictions')
             ->select('federation')
+            ->where('federation', $federation)
             ->distinct('federation')
             ->get();
 
         $countries = DB::table('predictions')
             ->select('competition_cluster')
+            ->where('federation', $federation)
+            ->distinct('competition_cluster')
+            ->get();
+
+        $leagues = DB::table('predictions')
+            ->select('competition_name', 'competition_cluster')
+            ->where('federation', $federation)
+            ->distinct('competition_name')
             ->distinct('competition_cluster')
             ->get();
 
 //        dd($games);
 
         $temp = 'predictions';
-        $type = 'country-today';
+        $type = 'federation-today';
 
         $currentDate = date('Y-m-d');
 
@@ -45,8 +55,9 @@ class PredictionsByCountryToday extends Controller
             'type' => $type,
             'tournaments' => $tournaments,
             'federations' => $federations,
-            'country' => $country,
+            'federation' => $federation,
             'countries' => $countries,
+            'leagues' => $leagues,
             'date' => $currentDate,
         ]);
     }

@@ -1,50 +1,52 @@
 <?php
 
-namespace App\Http\Controllers\Front\Predictions;
+namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
-class PredictionsByDateCountryController extends Controller
+class PredictionsByCountryToday extends Controller
 {
-        public function __invoke(Request $request, $date, $country)
+    public function __invoke($country)
     {
-//        dd($date);
-
-        $games = DB::table('predictions_by_dates')
+        $games = DB::table('predictions')
             ->select('*')
-            ->where('date', $date)
             ->where('competition_cluster', $country)
             ->get();
 
-        $tournaments = DB::table('predictions_by_dates')
+        $tournaments = DB::table('predictions')
             ->select('competition_cluster','competition_name', 'federation')
-            ->where('date', $date)
             ->where('competition_cluster', $country)
             ->distinct('competition_cluster')
             ->distinct('competition_name')
             ->distinct('federation')
             ->get();
 
-        $federations = DB::table('predictions_by_dates')
+        $federations = DB::table('predictions')
             ->select('federation')
-            ->where('date', $date)
             ->where('competition_cluster', $country)
             ->distinct('federation')
             ->get();
 
-        $countries = DB::table('predictions_by_dates')
+        $countries = DB::table('predictions')
             ->select('competition_cluster')
-            ->where('date', $date)
             ->where('competition_cluster', $country)
             ->distinct('competition_cluster')
             ->get();
 
-        $temp = 'predictions';
-        $type = 'date';
+        $leagues = DB::table('predictions')
+            ->select('competition_name', 'competition_cluster')
+            ->where('competition_cluster', $country)
+            ->distinct('competition_name')
+            ->get();
 
-        $currentDate = $date;
+//        dd($games);
+
+        $temp = 'predictions';
+        $type = 'country-today';
+
+        $currentDate = date('Y-m-d');
+
 
         return view('predictions.main', [
             'games' => $games,
@@ -54,8 +56,8 @@ class PredictionsByDateCountryController extends Controller
             'federations' => $federations,
             'country' => $country,
             'countries' => $countries,
+            'leagues' => $leagues,
             'date' => $currentDate,
-            'request' => $request
         ]);
     }
 }

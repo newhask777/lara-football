@@ -45,10 +45,10 @@ Route::group(['prefix' => 'backend/predictions'], function() {
  * Frontend requests today games
  */
 Route::group(['prefix' => 'predictions'], function() {
-    Route::get('/today', \App\Http\Controllers\Front\Predictions\PredictionsTodayController::class)->name('predictions.today');
-    Route::get('/today/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByFederationToday::class)->name('predictions.today.federation');
-    Route::get('/today/cluster/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByCountryToday::class)->name('predictions.today.country');
-    Route::get('/today/league/{league}', \App\Http\Controllers\Front\Predictions\PredictionsByLeagueToday::class)->name('predictions.today.league');
+    Route::get('/today', \App\Http\Controllers\Front\Predictions\Today\PredictionsTodayController::class)->name('predictions.today');
+    Route::get('/today/{federation}', \App\Http\Controllers\Front\Predictions\Today\PredictionsByFederationToday::class)->name('predictions.today.federation');
+    Route::get('/today/cluster/{country}', \App\Http\Controllers\Front\Predictions\Today\PredictionsByCountryToday::class)->name('predictions.today.country');
+    Route::get('/today/league/{league}', \App\Http\Controllers\Front\Predictions\Today\PredictionsByLeagueToday::class)->name('predictions.today.league');
 });
 
 
@@ -56,9 +56,10 @@ Route::group(['prefix' => 'predictions'], function() {
  * Frontend requests games by dates
  */
 Route::group(['prefix' => '/predictions/date'], function() {
-    Route::get('/{date}', \App\Http\Controllers\Front\Predictions\PredictionsByDateController::class)->name('predictions.date');
-    Route::get('/federation/{date}/{federation}', \App\Http\Controllers\Front\Predictions\PredictionsByDateFederationController::class)->name('predictions.date.federation');
-    Route::get('/country/{date}/{country}', \App\Http\Controllers\Front\Predictions\PredictionsByDateCountryController::class)->name('predictions.date.country');
+    Route::get('/{date}', \App\Http\Controllers\Front\Predictions\Date\PredictionsByDateController::class)->name('predictions.date');
+    Route::get('/federation/{date}/{federation}', \App\Http\Controllers\Front\Predictions\Date\PredictionsByDateFederationController::class)->name('predictions.date.federation');
+    Route::get('/country/{date}/{country}', \App\Http\Controllers\Front\Predictions\Date\PredictionsByDateCountryController::class)->name('predictions.date.country');
+    Route::get('/league/{date}/{league}', \App\Http\Controllers\Front\Predictions\Date\PredictionsByDateLeagueController::class)->name('predictions.date.league');
 
 });
 

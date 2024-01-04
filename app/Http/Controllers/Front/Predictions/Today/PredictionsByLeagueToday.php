@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Front\Predictions;
+namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class PredictionsByFederationToday extends Controller
+class PredictionsByLeagueToday extends Controller
 {
-    public function __invoke($federation)
+    public function __invoke($league)
     {
         $games = DB::table('predictions')
             ->select('*')
-            ->where('federation', $federation)
+            ->where('competition_name', $league)
             ->get();
 
         $tournaments = DB::table('predictions')
             ->select('competition_cluster','competition_name', 'federation')
+            ->where('competition_name', $league)
             ->distinct('competition_cluster')
             ->distinct('competition_name')
             ->distinct('federation')
@@ -23,18 +24,27 @@ class PredictionsByFederationToday extends Controller
 
         $federations = DB::table('predictions')
             ->select('federation')
+            ->where('competition_name', $league)
             ->distinct('federation')
             ->get();
 
         $countries = DB::table('predictions')
             ->select('competition_cluster')
+            ->where('competition_name', $league)
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($games);
+        $leagues = DB::table('predictions')
+            ->select('competition_name', 'competition_cluster')
+            ->where('competition_name', $league)
+            ->distinct('competition_name')
+            ->distinct('competition_cluster')
+            ->get();
+
+//        dd($leagues);
 
         $temp = 'predictions';
-        $type = 'federation-today';
+        $type = 'league-today';
 
         $currentDate = date('Y-m-d');
 
@@ -45,7 +55,8 @@ class PredictionsByFederationToday extends Controller
             'type' => $type,
             'tournaments' => $tournaments,
             'federations' => $federations,
-            'federation' => $federation,
+            'league' => $league,
+            'leagues' => $leagues,
             'countries' => $countries,
             'date' => $currentDate,
         ]);

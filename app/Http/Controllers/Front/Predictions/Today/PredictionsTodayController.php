@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Front\Predictions;
+namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Controllers\Controller;
-use App\Models\Back\Prediction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +31,14 @@ class PredictionsTodayController extends Controller
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($tournaments);
+        $leagues = DB::table('predictions')
+            ->select('competition_name', 'competition_cluster')
+            ->distinct('competition_name')
+            ->distinct('competition_cluster')
+            ->get();
+
+//        dd($leagues);
+
 
         $temp = '$leagues';
         $type = 'today';
@@ -47,6 +53,7 @@ class PredictionsTodayController extends Controller
             'tournaments' => $tournaments,
             'federations' => $federations,
             'countries' => $countries,
+            'leagues' => $leagues,
             'date' => $currentDate,
             'request' => $request
         ]);

@@ -26,7 +26,7 @@
                         </a>
                     </li>
 
-                @elseif(Request::is('predictions/date/*'))
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.date.federation', ['date' => $date, 'federation' => $federation->federation]) }}" class="flex">
@@ -102,18 +102,34 @@
         </div>
 
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
-            @foreach($tournaments as $tournament)
+            @foreach($leagues as $league)
 
-                <li class="p-2 bg-white hover:bg-gray-200">
-                    <a href="/predictions/today/league/{{ $tournament->competition_name }}" class="flex">
-                        <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
-                             src="https://flagdownload.com/wp-content/uploads/Flag_of_{{$tournament->competition_cluster}}_Flat_Round-1024x1024.png"
-                             alt="">
-                        <span class="ml-2">
-                        {{ $tournament->competition_name }}
-                    </span>
-                    </a>
-                </li>
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.today.league', ['league' => $league->competition_name]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $league->competition_cluster }}_Flat_Round-1024x1024.png"
+                                 alt="">
+                            <span class="ml-2">
+                            {{ $league->competition_name }}
+                        </span>
+                        </a>
+                    </li>
+
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.date.league', ['date' => $date, 'league' => $league->competition_name]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $league->competition_cluster }}_Flat_Round-1024x1024.png"
+                                 alt="">
+                            <span class="ml-2">
+                                {{  $league->competition_name }}
+                            </span>
+                        </a>
+                    </li>
+                @endif
 
             @endforeach
         </ul>
