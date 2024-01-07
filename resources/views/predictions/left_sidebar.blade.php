@@ -14,7 +14,7 @@
 
             @foreach($federations as $federation)
 
-                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') or Request::is('filter'))
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.today.federation' , ['federation' =>  $federation->federation]) }}" class="flex">
                             <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
@@ -58,7 +58,7 @@
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
             @foreach($countries as $country)
 
-                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') or Request::is('filter'))
 
                 <li class="p-2 bg-white hover:bg-gray-200">
                     <a href="{{ route('predictions.today.country', ['country' => $country->competition_cluster]) }}" class="flex">
@@ -104,7 +104,7 @@
         <ul class="ml-6 mr-6  mt-4 border-l border-r text-xs  font-bold">
             @foreach($leagues as $league)
 
-                @if(Request::is('predictions/today') or Request::is('predictions/today/*') )
+                @if(Request::is('predictions/today') or Request::is('predictions/today/*') or Request::is('filter'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.today.league', ['league' => $league->competition_name]) }}" class="flex">

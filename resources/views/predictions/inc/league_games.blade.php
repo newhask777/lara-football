@@ -55,13 +55,21 @@
                 <span>:</span>
                 <span class="text-xs font-bold mt-auto mb-auto ml-1">
 
-                    @foreach(json_decode($game->odds) as $odd => $value)
+                    @if(is_array($game->odds))
+                        @foreach($game->odds as $odd => $value)
+                            @if ($odd == $game->prediction)
+                                {{ $value }}
+                            @endif
+                        @endforeach
+                    @else
+                        @foreach(json_decode($game->odds) as $odd => $value)
+                            @if ($odd == $game->prediction)
+                                {{ $value }}
+                            @endif
+                        @endforeach
+                    @endif
 
-                        @if ($odd == $game->prediction)
-                            {{ $value }}
-                        @endif
 
-                    @endforeach
 
                 </span>
             </div>
