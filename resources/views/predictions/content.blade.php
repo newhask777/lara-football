@@ -6,9 +6,13 @@
     <!-- Matches Carts -->
     <div class="match_cart bg-white mb-2 rounded-md">
 
-        <!-- Cart Header -->
+        <!-- Card Header -->
         @include('predictions.cart_header')
-        <!-- end Cart Header -->
+        <!-- end Card Header -->
+
+        <!-- Card Filter -->
+        @include('predictions.filter')
+        <!-- end Card Header -->
 
         <!-- Games By League -->
         <div id="content" class="pl-4 pr-4 pb-1 pt-2 rounded-md ">

@@ -2,12 +2,15 @@
 
 namespace App\Models\Back;
 
+use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PredictionByDate extends Model
 {
+    use Filterable;
+
     protected $table = 'predictions_by_dates';
     protected $guarded = false;
 

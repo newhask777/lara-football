@@ -53,6 +53,14 @@ Route::group(['prefix' => 'predictions'], function() {
 
 
 /*
+ * Filter
+ */
+Route::group(['prefix' => 'filter'], function() {
+    Route::get('/', \App\Http\Controllers\Front\FilterController::class)->name('predictions.filter');
+});
+
+
+/*
  * Frontend requests games by dates
  */
 Route::group(['prefix' => '/predictions/date'], function() {

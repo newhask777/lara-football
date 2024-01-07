@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('result')->nullable();
             $table->string('prediction')->nullable();
             $table->boolean('is_expired')->nullable();
-            $table->json('odds');
+            $table->json('odds')->nullable();
 
             $table->timestamps();
         });
