@@ -56,7 +56,9 @@ Route::group(['prefix' => 'predictions'], function() {
  * Filter
  */
 Route::group(['prefix' => 'filter'], function() {
-    Route::get('/', \App\Http\Controllers\Front\FilterController::class)->name('predictions.filter');
+    Route::get('/', \App\Http\Controllers\Front\Predictions\Today\FilterController::class)->name('predictions.filter');
+    Route::get('/date/{date}', \App\Http\Controllers\Front\Predictions\Date\FilterController::class)->name('predictions.filter.date');
+
 });
 
 

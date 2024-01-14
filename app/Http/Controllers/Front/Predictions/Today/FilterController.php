@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Filter\PredictionsFilter;
 use App\Http\Requests\FilterRequest;
 use App\Models\Back\Prediction;
 use App\Models\Back\PredictionByDate;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Support\Facades\DB;
 
 class FilterController
 {
@@ -17,6 +16,8 @@ class FilterController
     public function __invoke(FilterRequest $request)
     {
         $data = $request->validated();
+
+//        dd($data);
 
         $filter = app()->make(PredictionsFilter::class, ['queryParams' => array_filter($data)]);
 
@@ -42,8 +43,11 @@ class FilterController
             ->distinct('competition_cluster')
             ->get();
 
-//        dd($tournaments);
+        $dates = PredictionByDate::select('date')
+            ->distinct('date')
+            ->get();
 
+        dd($dates);
 
         $temp = 'filter';
         $type = 'filter-today';
@@ -60,6 +64,7 @@ class FilterController
             'countries' => $countries,
             'leagues' => $leagues,
             'date' => $currentDate,
+            'dates' => $dates,
             'request' => $request
         ]);
 

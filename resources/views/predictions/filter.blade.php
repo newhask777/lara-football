@@ -2,21 +2,33 @@
     <div class="">
         <ul class="flex mt-auto mb-auto text-sm font-bold">
 
-{{--                <li class="ml-2 first:ml-0 rounded-md border pl-3 pr-3 pt-1 pb-1 mt-auto mb-auto bg-lime-500 text-white">--}}
-{{--                    <a href="/events">All</a>--}}
-{{--                </li>--}}
-            <form action="" method="GET">
+            <form action="{{route('predictions.filter.date', ['date' => $date])}}" method="GET">
                 @csrf
 
-                <select name="" id="" class="ml-2">
-                    <option value="">Date</option>
-                    <option value="">2023-06-05</option>
-                </select>
+                <div class="flex">
+                    <div class="border">
+                        <select name="date" id="" class="ml-2">
+                            <option value="" disabled>Date</option>
 
-                <select name="" id="" class="ml-4">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                </select>
+                            @foreach($dates as $date)
+                                <option value="{{$date->date}}">{{$date->date}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
+                    <div class="border ml-2">
+                        <select name="status" id="status" class="ml-2">
+                            <option value="selected" >all</option>
+                            <option value="won">won</option>
+                            <option value="lost">lost</option>
+                            <option value="postponed">postponed</option>
+                        </select>
+                    </div>
+                    <div class="ml-2">
+                        <button type="submit">Search</button>
+                    </div>
+                </div>
 
             </form>
 

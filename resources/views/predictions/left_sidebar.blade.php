@@ -26,7 +26,7 @@
                         </a>
                     </li>
 
-                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*') or Request::is('filter/date/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.date.federation', ['date' => $date, 'federation' => $federation->federation]) }}" class="flex">
@@ -71,7 +71,7 @@
                     </a>
                 </li>
 
-                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*') or Request::is('filter/date/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.date.country', ['date' => $date, 'country' => $country->competition_cluster]) }}" class="flex">
@@ -117,7 +117,7 @@
                         </a>
                     </li>
 
-                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*'))
+                @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*') or Request::is('filter/date/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.date.league', ['date' => $date, 'league' => $league->competition_name]) }}" class="flex">

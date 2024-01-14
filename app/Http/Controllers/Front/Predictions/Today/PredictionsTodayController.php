@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Predictions\Today;
 
 use App\Http\Controllers\Controller;
+use App\Models\Back\PredictionByDate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +40,12 @@ class PredictionsTodayController extends Controller
 
 //        dd($leagues);
 
+        $dates = PredictionByDate::select('date')
+            ->distinct('date')
+            ->get();
+
+//        dd($dates);
+
 
         $temp = '$leagues';
         $type = 'today';
@@ -55,6 +62,7 @@ class PredictionsTodayController extends Controller
             'countries' => $countries,
             'leagues' => $leagues,
             'date' => $currentDate,
+            'dates' => $dates,
             'request' => $request
         ]);
     }
