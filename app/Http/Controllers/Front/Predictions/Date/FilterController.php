@@ -12,38 +12,37 @@ class FilterController
     /**
      * @throws BindingResolutionException
      */
-    public function __invoke(FilterRequest $request, $date)
+    public function __invoke(FilterRequest $request)
     {
         $data = $request->validated();
 
-//        dd($data);
+//        dd($request->date);
 
         $filter = app()->make(PredictionsFilter::class, ['queryParams' => array_filter($data)]);
 
         $games = PredictionByDate::filter($filter)->get();
 
-//        dd($games);
+        $tournaments = PredictionByDate::filter($filter)->get();
 
-
-        $tournaments = PredictionByDate::select('competition_cluster','competition_name', 'federation')
-            ->where('date', $data['date'])
-            ->distinct('competition_cluster')
-            ->distinct('competition_name')
-            ->distinct('federation')
-            ->get();
+//        $tournaments = PredictionByDate::select('competition_cluster','competition_name', 'federation')
+//            ->where('date', $request->date)
+//            ->distinct('competition_cluster')
+//            ->distinct('competition_name')
+//            ->distinct('federation')
+//            ->get();
 
         $federations = PredictionByDate::select('federation')
-            ->where('date', $data['date'])
+            ->where('date', $request->date)
             ->distinct('federation')
             ->get();
 
         $countries = PredictionByDate::select('competition_cluster')
-            ->where('date', $data['date'])
+            ->where('date', $request->date)
             ->distinct('competition_cluster')
             ->get();
 
         $leagues = PredictionByDate::select('competition_name', 'competition_cluster')
-            ->where('date', $data['date'])
+            ->where('date', $request->date)
             ->distinct('competition_name')
             ->distinct('competition_cluster')
             ->get();
@@ -55,9 +54,11 @@ class FilterController
 //        dd($tournaments);
 
         $temp = 'filter';
-        $type = 'filter-today';
+        $type = 'filter';
 
-        $currentDate = $date;
+        $currentDate = $request->date;
+
+//        dd($currentDate);
 
 
         return view('predictions.main', [

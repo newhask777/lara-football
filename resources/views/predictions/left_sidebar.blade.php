@@ -39,6 +39,19 @@
                         </a>
                     </li>
 
+                @elseif(Request::is('filter/*'))
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.date.federation', ['date' => $date, 'federation' => $federation->federation]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="{{ asset('/logos/'. $federation->federation .'.png') }}"
+                                 alt="">
+                            <span class="ml-2">
+                                {{ $federation->federation }}
+                            </span>
+                        </a>
+                    </li>
+
                 @endif
 
             @endforeach
@@ -72,6 +85,19 @@
                 </li>
 
                 @elseif(Request::is('predictions/date/*') or Request::is('predictions/date/*/*') or Request::is('filter/date/*'))
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.date.country', ['date' => $date, 'country' => $country->competition_cluster]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $country->competition_cluster }}_Flat_Round-1024x1024.png"
+                                 alt="">
+                            <span class="ml-2">
+                                {{ $country->competition_cluster }}
+                            </span>
+                        </a>
+                    </li>
+
+                @elseif(Request::is('filter/*'))
 
                     <li class="p-2 bg-white hover:bg-gray-200">
                         <a href="{{ route('predictions.date.country', ['date' => $date, 'country' => $country->competition_cluster]) }}" class="flex">
@@ -129,6 +155,20 @@
                             </span>
                         </a>
                     </li>
+
+                @elseif(Request::is('filter/*'))
+
+                    <li class="p-2 bg-white hover:bg-gray-200">
+                        <a href="{{ route('predictions.date.league', ['date' => $date, 'league' => $league->competition_name]) }}" class="flex">
+                            <img class="w-5 mt-auto mb-auto rounded-full bg-gray-200"
+                                 src="https://flagdownload.com/wp-content/uploads/Flag_of_{{ $league->competition_cluster }}_Flat_Round-1024x1024.png"
+                                 alt="">
+                            <span class="ml-2">
+                                {{  $league->competition_name }}
+                            </span>
+                        </a>
+                    </li>
+
                 @endif
 
             @endforeach

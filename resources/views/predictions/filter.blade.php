@@ -8,10 +8,11 @@
                 <div class="flex">
                     <div class="border">
                         <select name="date" id="" class="ml-2">
-                            <option value="" disabled>Date</option>
 
-                            @foreach($dates as $date)
-                                <option value="{{$date->date}}">{{$date->date}}</option>
+                            <option value="{{request()->date}}"  selected>{{request()->date}}</option>
+
+                            @foreach($dates as $d)
+                                <option value="{{$d->date}}">{{$d->date}}</option>
                             @endforeach
 
                         </select>
@@ -19,7 +20,7 @@
 
                     <div class="border ml-2">
                         <select name="status" id="status" class="ml-2">
-                            <option value="selected" >all</option>
+                            <option value="{{request()->status}}" >{{request()->status}}</option>
                             <option value="won">won</option>
                             <option value="lost">lost</option>
                             <option value="postponed">postponed</option>

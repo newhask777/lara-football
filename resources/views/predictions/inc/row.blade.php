@@ -14,7 +14,7 @@
     @endforeach
 @endif
 
-@if($type == 'filter-today' or $type == 'date')
+@if($type == 'filter')
     @foreach($tournaments as $tournament)
 
         @include('predictions/inc/league_header')
