@@ -4,6 +4,7 @@
 namespace App\Http\Filter;
 
 
+use App\Models\Back\PredictionByDate;
 use Illuminate\Database\Eloquent\Builder;
 
 class PredictionsFilter extends AbstractFilter
@@ -27,7 +28,13 @@ class PredictionsFilter extends AbstractFilter
 
     public function status(Builder $builder, $value)
     {
-        $builder->where('status', $value);
+        if($value == 'all' or $value == '')
+        {
+            PredictionByDate::all();
+        }
+        else{
+            $builder->where('status', $value);
+        }
     }
 
 }

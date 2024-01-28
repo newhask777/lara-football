@@ -24,13 +24,6 @@ class FilterController
 
         $tournaments = PredictionByDate::filter($filter)->get();
 
-//        $tournaments = PredictionByDate::select('competition_cluster','competition_name', 'federation')
-//            ->where('date', $request->date)
-//            ->distinct('competition_cluster')
-//            ->distinct('competition_name')
-//            ->distinct('federation')
-//            ->get();
-
         $federations = PredictionByDate::select('federation')
             ->where('date', $request->date)
             ->distinct('federation')
