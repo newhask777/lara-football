@@ -5,6 +5,7 @@ namespace App\Http\Filter;
 
 
 use App\Models\Back\PredictionByDate;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 class PredictionsFilter extends AbstractFilter

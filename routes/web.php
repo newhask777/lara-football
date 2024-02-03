@@ -35,7 +35,7 @@ require __DIR__.'/auth.php';
 /*
  *  Backend requests to api
  */
-Route::group(['prefix' => 'backend/predictions'], function() {
+Route::group(['prefix' => 'api/predictions'], function() {
     Route::get('/today', \App\Http\Controllers\Back\Predictions\PredictionsTodayController::class)->name('back.index');
     Route::get('/date/{date}', \App\Http\Controllers\Back\Predictions\PredictionsByDateController::class)->name('back.date');
 });
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'predictions'], function() {
  * Filter
  */
 Route::group(['prefix' => 'filter'], function() {
-    Route::get('/', \App\Http\Controllers\Front\Predictions\Today\FilterController::class)->name('predictions.filter');
+//    Route::get('/', \App\Http\Controllers\Front\Predictions\Today\FilterController::class)->name('predictions.filter');
     Route::get('/date', \App\Http\Controllers\Front\Predictions\Date\FilterController::class)->name('predictions.filter.date');
 
 });
